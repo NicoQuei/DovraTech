@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   DOVRA TECH — base layer
+   Dark-first. Tokens mirrored as CSS vars for the canvas/JS layer.
+--------------------------------------------------------------------------- */
+:root {
+  color-scheme: dark;
+
+  --brand: #19e57d;
+  --brand-rgb: 25 229 125;
+  --brand-bright: #54ffa6;
+  --accent: #00d9c0;
+  --accent-rgb: 0 217 192;
+
+  --ink: #06070a;
+  --ink-700: #11141b;
+  --line: #1b2029;
+  --fg: #eaeeec;
+  --fg-muted: #8b95a7;
+
+  --header-h: 4.5rem;
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scrollbar-gutter: stable;
+}
+
+/* Lenis manages scroll; native smooth would fight it */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--ink);
+  color: var(--fg);
+  font-feature-settings: "ss01", "cv01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(var(--brand-rgb) / 0.28);
+  color: var(--brand-bright);
+}
+
+/* Focus ring — visible, on-brand, keyboard-only */
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: #232a35;
+  border-radius: 999px;
+  border: 2px solid var(--ink);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2f3845;
+}
+
+@layer base {
+  h1, h2, h3, h4 {
+    font-family: var(--font-space-grotesk), system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-container px-5 sm:px-8 lg:px-12;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.22em] text-brand;
+  }
+  .card-surface {
+    @apply rounded-2xl border border-line bg-ink-800/60 backdrop-blur-sm;
+  }
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-line-strong to-transparent;
+  }
+}
+
+@layer utilities {
+  .text-gradient-brand {
+    background: linear-gradient(100deg, var(--fg) 0%, var(--brand-bright) 55%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-glow {
+    text-shadow: 0 0 24px rgba(var(--brand-rgb) / 0.45);
+  }
+  /* mask used to fade marquee edges */
+  .mask-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+  .bg-grid {
+    background-image: var(--tw-bg-grid, none);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Reduced motion — honor the OS preference globally.
+   Components also branch on this via the useReducedMotion hook.
+--------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
