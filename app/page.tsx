@@ -2,7 +2,7 @@ import { HeroVideo } from "@/components/sections/home/HeroVideo";
 import { Manifesto } from "@/components/sections/home/Manifesto";
 import { ServicesShowcase } from "@/components/sections/home/ServicesShowcase";
 import { FeaturesBento } from "@/components/sections/home/FeaturesBento";
-import { FeaturedWork } from "@/components/sections/home/FeaturedWork";
+import { ProjectShowcase } from "@/components/sections/home/ProjectShowcase";
 import { StatsBand } from "@/components/sections/home/StatsBand";
 import { ProcessPreview } from "@/components/sections/home/ProcessPreview";
 import { SocialProof } from "@/components/sections/home/SocialProof";
@@ -15,7 +15,7 @@ export default function HomePage() {
       <Manifesto />
       <ServicesShowcase />
       <FeaturesBento />
-      <FeaturedWork />
+      <ProjectShowcase />
       <StatsBand />
       <ProcessPreview />
       <SocialProof />

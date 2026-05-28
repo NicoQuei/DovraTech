@@ -1,4 +1,4 @@
-export type ProjectType = "E-commerce" | "SaaS" | "Site" | "App";
+export type ProjectType = "Landing Page" | "Site" | "E-commerce" | "SaaS" | "App";
 
 export type Metric = { value: string; label: string };
 
@@ -12,9 +12,11 @@ export type Project = {
   summary: string;
   /** headline metric shown on the card */
   headline: Metric;
-  /** gradient accent for the generated cover */
+  /** gradient accent for the generated cover (fallback when `image` is absent) */
   accent: string;
   accentTo: string;
+  /** real cover image (path under /public, e.g. "/work/eugenius.png") */
+  image?: string;
   tags: string[];
   challenge: string;
   solution: { title: string; body: string }[];
@@ -26,182 +28,89 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "norte-commerce",
-    name: "Norte",
-    client: "Norte — moda autoral",
-    type: "E-commerce",
-    year: "2025",
+    slug: "eugenius",
+    name: "Eugenius",
+    client: "Eugenius — cursinho online para o ENEM",
+    type: "SaaS",
+    year: "2026",
     summary:
-      "Loja headless de uma marca de moda direct-to-consumer, do catálogo ao checkout em Pix.",
-    headline: { value: "-27%", label: "abandono de carrinho" },
+      "Cursinho online para o ENEM, gamificado: videoaulas, simulados e trilha de estudos com XP e conquistas, com assinaturas e pagamento integrado.",
+    headline: { value: "500+", label: "alunos aprovados no ENEM" },
     accent: "#19E57D",
     accentTo: "#00D9C0",
-    tags: ["E-commerce", "Headless", "Performance"],
+    image: "/work/eugenius.jpg",
+    tags: ["SaaS", "Educação", "Gamificação", "Pagamentos"],
     challenge:
-      "A Norte vendia numa plataforma pronta que cobrava caro por transação, travava a customização do checkout e ficava lenta justamente nas campanhas. A marca queria uma experiência à altura do seu produto, sem perder venda na última etapa.",
+      "O Eugenius queria reunir num só produto a preparação completa para o ENEM — videoaulas, simulados, correção de redação e uma trilha de estudos que se adapta ao aluno — com o engajamento de um app de hábitos e a cobrança de uma assinatura confiável, sem depender de uma colcha de retalhos de ferramentas.",
     solution: [
       {
-        title: "Front-end headless sob medida",
-        body: "Mantivemos o back-end de catálogo e pedidos e construímos um front-end próprio em Next.js, com catálogo estático regenerado sob demanda (ISR) e busca instantânea.",
+        title: "Preparação completa em trilha adaptativa",
+        body: "Videoaulas, simulados ilimitados e correção de redação por especialistas, organizados numa trilha de estudos que se adapta ao ritmo de cada aluno até o dia da prova.",
       },
       {
-        title: "Checkout transparente com Pix",
-        body: "Checkout em uma página com Pix, cartão e parcelamento, otimizado contra abandono e instrumentado para medir cada etapa do funil.",
+        title: "Engajamento que vira hábito",
+        body: "Dashboard do aluno com XP, conquistas e progresso visível, transformando cada aula e simulado em recompensa para sustentar a rotina de estudos.",
       },
       {
-        title: "Performance como diferencial",
-        body: "Imagens em AVIF, cache de borda e zero JavaScript supérfluo. O catálogo passou a carregar abaixo de 1s mesmo em pico de campanha.",
+        title: "Assinaturas e pagamentos seguros",
+        body: "Cobrança via AbacatePay com webhooks validados por HMAC: cada pagamento é verificado antes de liberar acesso, mantendo assinatura e permissões sempre em sincronia.",
       },
     ],
     results: [
-      { value: "-27%", label: "abandono de carrinho" },
-      { value: "0,9s", label: "carregamento do catálogo" },
-      { value: "+34%", label: "conversão mobile" },
-      { value: "98", label: "Lighthouse performance" },
+      { value: "500+", label: "alunos aprovados" },
+      { value: "120+", label: "videoaulas na plataforma" },
+      { value: "30+", label: "simulados" },
+      { value: "100%", label: "satisfação dos alunos" },
     ],
-    stack: ["Next.js", "Medusa", "Stripe", "Mercado Pago", "Vercel"],
-    testimonial: {
-      quote:
-        "A loja ficou rápida de um jeito que a gente sente. E o checkout parou de perder venda no Pix.",
-      author: "Marina Alves",
-      role: "Fundadora, Norte",
-    },
-    liveUrl: "https://example.com",
+    stack: ["Next.js", "Supabase", "TypeScript", "AbacatePay"],
+    liveUrl: "https://cursinhoeugenius.com.br",
   },
   {
-    slug: "fluxo-saas",
-    name: "Fluxo",
-    client: "Fluxo — gestão para serviços",
-    type: "SaaS",
-    year: "2025",
+    slug: "grao-e-alma",
+    name: "Grão & Alma",
+    client: "Grão & Alma — cafeteria (conceito)",
+    type: "Landing Page",
+    year: "2026",
     summary:
-      "Plataforma SaaS multi-tenant de gestão, do MVP à cobrança por assento em escala.",
-    headline: { value: "99,98%", label: "uptime" },
-    accent: "#00D9C0",
-    accentTo: "#4DA8FF",
-    tags: ["SaaS", "Multi-tenant", "Billing"],
+      "Landing page conceitual para uma cafeteria de café de origem única: design escuro e elegante, totalmente responsivo, com narrativa de torra artesanal, cardápio e reservas.",
+    headline: { value: "Conceito", label: "landing page de café de origem única" },
+    accent: "#F5B544",
+    accentTo: "#E0683C",
+    image: "/work/cafeteria.jpg",
+    tags: ["Landing Page", "Responsivo", "Front-end"],
     challenge:
-      "O Fluxo precisava sair de uma planilha compartilhada para um produto de verdade — multi-tenant, com cobrança recorrente e permissões — sem construir um MVP que virasse dívida técnica assim que os primeiros clientes chegassem.",
+      "Uma cafeteria de café de origem única precisa transmitir a obsessão pela qualidade já na primeira tela — a história da torra, dos produtores e do método — de forma envolvente, elegante e impecável no celular, onde a maioria das pessoas descobre um café.",
     solution: [
       {
-        title: "Arquitetura multi-tenant desde a base",
-        body: "Isolamento de dados por organização com row-level security, papéis (RBAC) e convites de equipe — pronto para crescer sem reescrever a fundação.",
+        title: "Narrativa de origem e torra",
+        body: "Seções como A Torra, Produtores, Processo e Manifesto contam a história do grão e criam desejo antes mesmo do cardápio.",
       },
       {
-        title: "Cobrança por assento com Stripe Billing",
-        body: "Trials, upgrades, downgrades e cobrança por assento sincronizados via webhooks, mantendo o estado de assinatura sempre consistente.",
+        title: "Estética escura e sofisticada",
+        body: "Paleta escura com tons quentes de café, tipografia editorial e fotografia que colocam o produto no centro da experiência.",
       },
       {
-        title: "Observabilidade e jobs em background",
-        body: "Filas para tarefas pesadas, logs estruturados, métricas e alertas — para escalar com previsibilidade e dormir tranquilo.",
+        title: "Responsiva e leve, do mobile ao desktop",
+        body: "Construída com HTML, CSS e JavaScript sobre Vite — rápida, fluida e impecável em qualquer tela, sem peso desnecessário.",
       },
     ],
     results: [
-      { value: "99,98%", label: "uptime em 12 meses" },
-      { value: "0 → milhares", label: "usuários pagantes" },
-      { value: "6 sem.", label: "do início ao MVP no ar" },
-      { value: "<200ms", label: "resposta média da API" },
+      { value: "Origem única", label: "narrativa de torra artesanal" },
+      { value: "Mobile-first", label: "responsivo em qualquer tela" },
+      { value: "Editorial", label: "estética escura e sofisticada" },
+      { value: "Leve", label: "HTML/CSS/JS sobre Vite" },
     ],
-    stack: ["Next.js", "PostgreSQL", "Prisma", "Stripe Billing", "Redis", "AWS"],
-    testimonial: {
-      quote:
-        "Entregaram um MVP rápido que, dois anos depois, ainda é a mesma base. Isso diz tudo.",
-      author: "Rafael Tavares",
-      role: "CEO, Fluxo",
-    },
-    liveUrl: "https://example.com",
-  },
-  {
-    slug: "atlas-institucional",
-    name: "Atlas",
-    client: "Atlas Consultoria",
-    type: "Site",
-    year: "2024",
-    summary:
-      "Rebrand e site institucional headless, com o time de marketing publicando sozinho.",
-    headline: { value: "100/100", label: "SEO" },
-    accent: "#54FFA6",
-    accentTo: "#19E57D",
-    tags: ["Site", "Headless CMS", "SEO"],
-    challenge:
-      "O site da Atlas era pesado, difícil de atualizar e invisível no Google. Cada mudança de conteúdo dependia de um desenvolvedor, e o ranking despencava por causa da performance.",
-    solution: [
-      {
-        title: "CMS headless para autonomia",
-        body: "Modelamos o conteúdo em um CMS headless para o time de marketing publicar com segurança, sem quebrar o layout nem depender de dev.",
-      },
-      {
-        title: "Migração sem perder ranking",
-        body: "Migração de conteúdo com redirecionamentos 301 e dados estruturados, preservando — e ampliando — a autoridade já conquistada.",
-      },
-      {
-        title: "Performance e acessibilidade",
-        body: "Renderização estática e otimização de imagens levaram o site ao verde nos Core Web Vitals e à conformidade com WCAG.",
-      },
-    ],
-    results: [
-      { value: "100/100", label: "SEO (Lighthouse)" },
-      { value: "+62%", label: "tráfego orgânico (6 meses)" },
-      { value: "autônomo", label: "marketing publica sozinho" },
-      { value: "1,1s", label: "Largest Contentful Paint" },
-    ],
-    stack: ["Next.js", "Sanity CMS", "Tailwind CSS", "Vercel"],
-    testimonial: {
-      quote:
-        "Hoje publicamos um artigo em minutos. E o telefone passou a tocar por causa do Google.",
-      author: "Camila Reis",
-      role: "Head de Marketing, Atlas",
-    },
-    liveUrl: "https://example.com",
-  },
-  {
-    slug: "orbita-app",
-    name: "Órbita",
-    client: "Órbita — fidelidade",
-    type: "App",
-    year: "2024",
-    summary:
-      "App de fidelidade híbrido para iOS e Android a partir de uma base de código única.",
-    headline: { value: "4,8★", label: "nas lojas" },
-    accent: "#4DA8FF",
-    accentTo: "#00D9C0",
-    tags: ["App", "React Native", "Mobile"],
-    challenge:
-      "A Órbita queria um app de fidelidade nas duas lojas sem o custo de manter duas bases de código nativas, e com a capacidade de iterar rápido a partir do feedback dos usuários.",
-    solution: [
-      {
-        title: "Uma base, duas plataformas",
-        body: "React Native com Expo entregando experiência fluida em iOS e Android a partir de uma única base, com gestos e navegação nativos.",
-      },
-      {
-        title: "Atualizações over-the-air",
-        body: "Correções e melhorias publicadas via OTA, sem esperar a revisão das lojas a cada ajuste pequeno.",
-      },
-      {
-        title: "Back-end compartilhado com a web",
-        body: "API única atendendo app e painel web, com push notifications e programa de pontos em tempo real.",
-      },
-    ],
-    results: [
-      { value: "4,8★", label: "média nas lojas" },
-      { value: "1 base", label: "iOS + Android" },
-      { value: "OTA", label: "atualização sem nova submissão" },
-      { value: "+45%", label: "recompra de clientes ativos" },
-    ],
-    stack: ["React Native", "Expo", "Node.js", "PostgreSQL", "Push Notifications"],
-    testimonial: {
-      quote:
-        "Lançamos nas duas lojas no mesmo dia e conseguimos corrigir e melhorar quase em tempo real.",
-      author: "Diego Nunes",
-      role: "Produto, Órbita",
-    },
-    liveUrl: "https://example.com",
+    stack: ["HTML5", "CSS3", "JavaScript", "Vite"],
+    liveUrl: "https://cafeteria-mocha-ten.vercel.app/",
   },
 ];
 
 export const PROJECT_SLUGS = projects.map((p) => p.slug);
 
-export const projectTypes: ProjectType[] = ["E-commerce", "SaaS", "Site", "App"];
+/** Project types actually present in the portfolio (powers the gallery filter). */
+export const projectTypes: ProjectType[] = Array.from(
+  new Set(projects.map((p) => p.type)),
+);
 
 export function getProject(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);

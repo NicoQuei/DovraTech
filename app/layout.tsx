@@ -7,6 +7,7 @@ import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { BackgroundFX } from "@/components/layout/BackgroundFX";
+import { PageLoader } from "@/components/layout/PageLoader";
 
 const display = Space_Grotesk({
   subsets: ["latin"],
@@ -94,6 +95,7 @@ export default function RootLayout({
       className={cn(display.variable, sans.variable, mono.variable)}
     >
       <body className="min-h-screen bg-ink font-sans text-fg antialiased">
+        <PageLoader />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
