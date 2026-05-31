@@ -20,7 +20,7 @@ export default function ProcessoPage() {
             <span className="text-gradient-brand">sem caixa-preta.</span>
           </>
         }
-        intro="Seis etapas claras. Em cada uma você sabe exatamente o que acontece, o que recebe e quanto tempo leva. Previsibilidade reduz risco — e risco menor é o que justifica o investimento."
+        intro="Seis etapas claras e enxutas. Uma landing page vai ao ar em até 72 horas; mesmo o projeto mais completo fica pronto em até 1 mês. Em cada etapa você sabe exatamente o que acontece, o que recebe e quanto tempo leva — previsibilidade reduz risco, e velocidade é o nosso padrão."
       />
       <ProcessTimeline />
       <CtaBanner

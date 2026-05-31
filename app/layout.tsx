@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, DM_Sans, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
-import { site } from "@/lib/site";
+import { site, socials } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { Header } from "@/components/layout/Header";
@@ -74,7 +75,7 @@ const orgJsonLd = {
   description: site.description,
   email: site.email,
   slogan: site.tagline,
-  sameAs: ["https://github.com", "https://linkedin.com", "https://instagram.com"],
+  sameAs: socials.map((s) => s.href),
 };
 
 export const viewport: Viewport = {
@@ -114,6 +115,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </SmoothScroll>
+        <Analytics />
       </body>
     </html>
   );

@@ -15,7 +15,7 @@ const sections: Block[] = [
   {
     h: "1. Quem somos",
     p: [
-      `Esta política descreve como a ${site.fullName} (CNPJ ${site.cnpj}) trata os dados pessoais coletados através deste site, em conformidade com a Lei nº 13.709/2018 (Lei Geral de Proteção de Dados — LGPD).`,
+      `Esta política descreve como a ${site.fullName} trata os dados pessoais coletados através deste site, em conformidade com a Lei nº 13.709/2018 (Lei Geral de Proteção de Dados — LGPD).`,
     ],
   },
   {

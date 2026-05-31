@@ -12,39 +12,55 @@ import { cn } from "@/lib/utils";
 type TypeOption = {
   id: string;
   label: string;
+  desc: string;
   icon: IconName;
-  min: number;
-  max: number;
-  wmin: number;
-  wmax: number;
+  /** preço inicial ("a partir de") */
+  base: number;
+  /** prazo em dias */
+  dmin: number;
+  dmax: number;
 };
 
 const TYPES: TypeOption[] = [
-  { id: "landing", label: "Landing page", icon: "MousePointerClick", min: 4000, max: 9000, wmin: 1, wmax: 2 },
-  { id: "site", label: "Site institucional", icon: "Globe", min: 9000, max: 20000, wmin: 2, wmax: 4 },
-  { id: "ecommerce", label: "E-commerce", icon: "ShoppingCart", min: 20000, max: 50000, wmin: 4, wmax: 8 },
-  { id: "saas", label: "Plataforma SaaS", icon: "Layers", min: 35000, max: 130000, wmin: 8, wmax: 16 },
-  { id: "app", label: "Aplicativo mobile", icon: "Smartphone", min: 30000, max: 90000, wmin: 6, wmax: 14 },
-  { id: "sistema", label: "Sistema web", icon: "Workflow", min: 25000, max: 80000, wmin: 5, wmax: 12 },
+  { id: "landing", label: "Landing page", desc: "Uma página focada em vender ou captar contatos", icon: "MousePointerClick", base: 400, dmin: 2, dmax: 3 },
+  { id: "site", label: "Site institucional", desc: "Site com várias páginas: sobre, serviços, contato", icon: "Globe", base: 1000, dmin: 4, dmax: 8 },
+  { id: "ecommerce", label: "Loja virtual", desc: "Vender produtos online, com carrinho e pagamento", icon: "ShoppingCart", base: 2500, dmin: 10, dmax: 18 },
+  { id: "saas", label: "Plataforma por assinatura", desc: "Sistema com contas de usuário e cobrança recorrente", icon: "Layers", base: 4000, dmin: 16, dmax: 28 },
+  { id: "app", label: "Aplicativo de celular", desc: "App para Android e iPhone", icon: "Smartphone", base: 4000, dmin: 14, dmax: 28 },
+  { id: "sistema", label: "Sistema interno", desc: "Ferramenta sob medida para a sua operação", icon: "Workflow", base: 3000, dmin: 12, dmax: 24 },
 ];
 
 type FeatureOption = {
   id: string;
   label: string;
+  desc: string;
   icon: IconName;
-  add: [number, number];
-  w: number;
+  /** quanto soma ao preço inicial */
+  add: number;
+  /** dias adicionados ao prazo */
+  dadd: [number, number];
 };
 
 const FEATURES: FeatureOption[] = [
-  { id: "design", label: "UI/UX dedicado", icon: "PenTool", add: [4000, 9000], w: 1 },
-  { id: "branding", label: "Branding / identidade", icon: "Sparkles", add: [4000, 10000], w: 1 },
-  { id: "pagamentos", label: "Pagamentos / checkout", icon: "CreditCard", add: [3000, 9000], w: 1 },
-  { id: "auth", label: "Login / contas de usuário", icon: "Lock", add: [3000, 8000], w: 1 },
-  { id: "admin", label: "Painel administrativo", icon: "BarChart3", add: [6000, 16000], w: 2 },
-  { id: "integracoes", label: "Integrações / API / ERP", icon: "Plug", add: [4000, 12000], w: 2 },
-  { id: "seo", label: "SEO & tráfego", icon: "TrendingUp", add: [2000, 6000], w: 1 },
+  { id: "design", label: "Design sob medida", desc: "Layout exclusivo, não um modelo pronto", icon: "PenTool", add: 300, dadd: [2, 4] },
+  { id: "pagamentos", label: "Pagamentos online", desc: "Pix, cartão e checkout", icon: "CreditCard", add: 250, dadd: [1, 3] },
+  { id: "auth", label: "Área de login", desc: "Cadastro e contas de usuário", icon: "Lock", add: 250, dadd: [1, 2] },
+  { id: "admin", label: "Painel de gestão", desc: "Uma área para você administrar o conteúdo", icon: "BarChart3", add: 500, dadd: [3, 6] },
+  { id: "integracoes", label: "Integrações", desc: "Conectar com outros sistemas que você já usa", icon: "Plug", add: 400, dadd: [2, 5] },
+  { id: "seo", label: "Aparecer no Google", desc: "Otimização para buscas (SEO)", icon: "TrendingUp", add: 200, dadd: [1, 2] },
 ];
+
+/** Teto de prazo: nenhum projeto passa de 1 mês. */
+const MAX_DAYS = 30;
+
+/** Formata uma faixa de dias num prazo amigável (valor + unidade). */
+function formatPrazo(dmin: number, dmax: number): { value: string; unit: string } {
+  if (dmax <= 3) return { value: "até 72", unit: "horas" };
+  if (dmax < 14) return { value: `${dmin}–${dmax}`, unit: "dias" };
+  const wmin = Math.max(1, Math.round(dmin / 7));
+  const wmax = Math.max(wmin, Math.round(dmax / 7));
+  return { value: `${wmin}–${wmax}`, unit: "semanas" };
+}
 
 const STEPS = ["Tipo", "Escopo", "Estimativa", "Contato"];
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -63,17 +79,20 @@ export function ProjectConfigurator() {
 
   const estimate = useMemo(() => {
     if (!type) return null;
-    let min = type.min;
-    let max = type.max;
-    let wAdd = 0;
+    let base = type.base;
+    let dmin = type.dmin;
+    let dmax = type.dmax;
     for (const id of features) {
       const f = FEATURES.find((x) => x.id === id);
       if (!f) continue;
-      min += f.add[0];
-      max += f.add[1];
-      wAdd += f.w;
+      base += f.add;
+      dmin += f.dadd[0];
+      dmax += f.dadd[1];
     }
-    return { min, max, wmin: type.wmin + wAdd, wmax: type.wmax + wAdd };
+    // nenhum projeto passa de 1 mês
+    dmin = Math.min(dmin, MAX_DAYS);
+    dmax = Math.min(dmax, MAX_DAYS);
+    return { base, dmin, dmax };
   }, [type, features]);
 
   const emailValid = EMAIL_RE.test(form.email);
@@ -102,7 +121,9 @@ export function ProjectConfigurator() {
       `• Tipo: ${type?.label}`,
       `• Escopo: ${feats || "essencial"}`,
       estimate
-        ? `• Estimativa: R$ ${formatBR(estimate.min)}–R$ ${formatBR(estimate.max)} · ${estimate.wmin}–${estimate.wmax} semanas`
+        ? `• Estimativa: a partir de R$ ${formatBR(estimate.base)} · ${
+            formatPrazo(estimate.dmin, estimate.dmax).value
+          } ${formatPrazo(estimate.dmin, estimate.dmax).unit}`
         : "",
       ``,
       `Nome: ${form.name}`,
@@ -197,6 +218,7 @@ export function ProjectConfigurator() {
                             key={t.id}
                             icon={t.icon}
                             label={t.label}
+                            desc={t.desc}
                             selected={typeId === t.id}
                             onClick={() => setTypeId(t.id)}
                           />
@@ -216,6 +238,7 @@ export function ProjectConfigurator() {
                             key={f.id}
                             icon={f.icon}
                             label={f.label}
+                            desc={f.desc}
                             selected={features.includes(f.id)}
                             multi
                             onClick={() => toggleFeature(f.id)}
@@ -228,7 +251,7 @@ export function ProjectConfigurator() {
                   {step === 2 && estimate && (
                     <Fieldset
                       legend="Sua estimativa inicial"
-                      hint="Uma faixa de partida — o número exato sai depois da conversa."
+                      hint="Um ponto de partida — o número exato sai depois da conversa, com o escopo na mão."
                     >
                       <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
                         <div className="bg-ink-700 p-7">
@@ -236,9 +259,10 @@ export function ProjectConfigurator() {
                             Investimento
                           </p>
                           <p className="mt-3 font-display text-3xl font-semibold text-fg">
-                            R$ {formatBR(estimate.min)}
-                            <span className="text-fg-faint"> – </span>
-                            R$ {formatBR(estimate.max)}
+                            <span className="mr-1.5 align-middle text-sm font-normal text-fg-muted">
+                              a partir de
+                            </span>
+                            R$ {formatBR(estimate.base)}
                           </p>
                         </div>
                         <div className="bg-ink-700 p-7">
@@ -246,9 +270,9 @@ export function ProjectConfigurator() {
                             Prazo
                           </p>
                           <p className="mt-3 font-display text-3xl font-semibold text-fg">
-                            {estimate.wmin}–{estimate.wmax}
+                            {formatPrazo(estimate.dmin, estimate.dmax).value}
                             <span className="ml-2 text-base font-normal text-fg-muted">
-                              semanas
+                              {formatPrazo(estimate.dmin, estimate.dmax).unit}
                             </span>
                           </p>
                         </div>
@@ -361,12 +385,14 @@ function Fieldset({
 function OptionCard({
   icon,
   label,
+  desc,
   selected,
   multi,
   onClick,
 }: {
   icon: IconName;
   label: string;
+  desc?: string;
   selected: boolean;
   multi?: boolean;
   onClick: () => void;
@@ -377,7 +403,7 @@ function OptionCard({
       onClick={onClick}
       aria-pressed={selected}
       className={cn(
-        "group flex items-center gap-3 rounded-xl border p-4 text-left transition-colors duration-200",
+        "group flex items-start gap-3 rounded-xl border p-4 text-left transition-colors duration-200",
         selected
           ? "border-brand bg-brand/10"
           : "border-line bg-ink-700/40 hover:border-line-strong",
@@ -391,12 +417,17 @@ function OptionCard({
       >
         <Icon name={icon} className="h-5 w-5" />
       </span>
-      <span className={cn("flex-1 text-sm font-medium", selected ? "text-fg" : "text-fg")}>
-        {label}
+      <span className="min-w-0 flex-1">
+        <span className="block text-sm font-medium text-fg">{label}</span>
+        {desc && (
+          <span className="mt-0.5 block text-xs leading-snug text-fg-muted">
+            {desc}
+          </span>
+        )}
       </span>
       <span
         className={cn(
-          "flex h-5 w-5 shrink-0 items-center justify-center border text-ink transition-colors",
+          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center border text-ink transition-colors",
           multi ? "rounded-md" : "rounded-full",
           selected ? "border-brand bg-brand" : "border-line-strong bg-transparent",
         )}

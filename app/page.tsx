@@ -5,7 +5,6 @@ import { FeaturesBento } from "@/components/sections/home/FeaturesBento";
 import { ProjectShowcase } from "@/components/sections/home/ProjectShowcase";
 import { StatsBand } from "@/components/sections/home/StatsBand";
 import { ProcessPreview } from "@/components/sections/home/ProcessPreview";
-import { SocialProof } from "@/components/sections/home/SocialProof";
 import { FinalCTA } from "@/components/sections/home/FinalCTA";
 
 export default function HomePage() {
@@ -18,7 +17,6 @@ export default function HomePage() {
       <ProjectShowcase />
       <StatsBand />
       <ProcessPreview />
-      <SocialProof />
       <FinalCTA />
     </>
   );

@@ -77,14 +77,14 @@ export const services: Service[] = [
     ],
     stack: ["Next.js", "Tailwind CSS", "Vercel Edge", "GA4", "Meta Pixel"],
     miniCase: {
-      title: "Lançamento de produto SaaS",
-      body: "Reescrevemos a landing de um cliente migrando de um builder no-code para Next.js. Carregamento caiu de 4,8s para 0,9s.",
-      metric: "+38% de conversão",
+      title: "Landing de alta conversão",
+      body: "Numa landing focada, miramos carregamento abaixo de 1s, estrutura de conversão clara — do hero ao CTA único — e medição instrumentada desde o dia um.",
+      metric: "90+ Lighthouse",
     },
     faq: [
       {
         q: "Em quanto tempo fica pronta?",
-        a: "Uma landing focada costuma levar de 1 a 2 semanas, do briefing ao deploy, dependendo do volume de conteúdo e integrações.",
+        a: "Uma landing focada vai ao ar em até 72 horas, do briefing ao deploy, dependendo do volume de conteúdo e integrações.",
       },
       {
         q: "Vocês escrevem o texto?",
@@ -122,9 +122,9 @@ export const services: Service[] = [
     ],
     stack: ["Next.js", "Sanity CMS", "Tailwind CSS", "Vercel"],
     miniCase: {
-      title: "Rebrand de consultoria",
-      body: "Migramos um site institucional pesado para uma stack headless. O time de marketing passou a publicar sozinho.",
-      metric: "100/100 em SEO",
+      title: "Site institucional headless",
+      body: "Arquitetura headless com CMS para o seu time publicar sozinho, rotas semânticas e renderização estática — feito para indexar bem e durar sem virar pesadelo de manutenção.",
+      metric: "100/100 SEO",
     },
     faq: [
       {
@@ -171,9 +171,9 @@ export const services: Service[] = [
     ],
     stack: ["Next.js", "Stripe", "Mercado Pago", "Medusa", "PostgreSQL"],
     miniCase: {
-      title: "Marca de moda direct-to-consumer",
-      body: "Loja headless com checkout em uma página e Pix. Tempo de carregamento do catálogo abaixo de 1s mesmo em campanha.",
-      metric: "-27% de abandono de carrinho",
+      title: "Loja com checkout otimizado",
+      body: "Catálogo com SSG/ISR, busca instantânea e checkout transparente com Pix — pensado para aguentar pico de campanha e reduzir o abandono de carrinho.",
+      metric: "<1s no catálogo",
     },
     faq: [
       {
@@ -220,9 +220,9 @@ export const services: Service[] = [
     ],
     stack: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Stripe Billing", "Redis"],
     miniCase: {
-      title: "SaaS B2B de gestão",
-      body: "Plataforma multi-tenant com RBAC e cobrança por assento. Escalou de 0 a milhares de usuários pagantes sem reescrever a base.",
-      metric: "99,98% de uptime",
+      title: "Plataforma multi-tenant",
+      body: "Isolamento de dados por tenant, RBAC e cobrança recorrente com Stripe Billing — uma fundação pensada para escalar de zero a milhares de usuários sem reescrever a base.",
+      metric: "Pronto para escalar",
     },
     faq: [
       {
@@ -265,9 +265,9 @@ export const services: Service[] = [
     ],
     stack: ["React Native", "Expo", "TypeScript", "App Store", "Google Play"],
     miniCase: {
-      title: "App de fidelidade",
-      body: "App híbrido com Expo para iOS e Android a partir de uma base única, com atualizações OTA sem nova submissão.",
-      metric: "4,8★ nas lojas",
+      title: "App híbrido com Expo",
+      body: "Uma base única em React Native/Expo para iOS e Android, com atualizações over-the-air e experiência fluida — sem o custo de manter dois aplicativos.",
+      metric: "iOS + Android",
     },
     faq: [
       {
@@ -308,11 +308,11 @@ export const services: Service[] = [
         body: "Dashboards com os números certos, relatórios exportáveis e permissões por papel para cada área ver só o que precisa.",
       },
     ],
-    stack: ["Next.js", "Node.js", "PostgreSQL", "REST/GraphQL", "Docker"],
+    stack: ["Next.js", "Node.js", "PostgreSQL", "REST/GraphQL"],
     miniCase: {
-      title: "ERP leve para logística",
-      body: "Sistema interno integrando pedidos, estoque e transportadoras, substituindo seis planilhas e dois softwares desconectados.",
-      metric: "-15h/semana de trabalho manual",
+      title: "Sistema interno sob medida",
+      body: "Um sistema que reflete o seu processo real, integrando pedidos, estoque e transportadoras — para substituir a colcha de planilhas e softwares desconectados.",
+      metric: "Menos retrabalho",
     },
     faq: [
       {
@@ -360,9 +360,9 @@ export const services: Service[] = [
     ],
     stack: ["Figma", "Design Tokens", "Storybook", "WCAG 2.2"],
     miniCase: {
-      title: "Redesenho de painel financeiro",
-      body: "Reestruturamos um dashboard confuso em um design system claro. Suporte caiu porque o produto passou a se explicar.",
-      metric: "-40% de tickets de dúvida",
+      title: "Design system, não telas soltas",
+      body: "Componentes e tokens consistentes no Figma que viram código reutilizável, com acessibilidade desde o desenho — uma interface que se explica sozinha e reduz tickets de dúvida.",
+      metric: "0 inconsistência",
     },
     faq: [
       {
@@ -379,51 +379,6 @@ export const services: Service[] = [
       },
     ],
     icon: "PenTool",
-  },
-  {
-    slug: "branding",
-    frente: "desenhamos",
-    title: "Branding",
-    short: "Identidade visual coerente do logo ao produto.",
-    promise:
-      "Uma marca que parece a mesma no logo, no site e no app — porque foi pensada junto.",
-    problem:
-      "Marcas construídas em pedaços não conversam: o logo vai por um caminho, o site por outro, o produto por um terceiro. O cliente sente a inconsistência, mesmo sem saber nomeá-la.",
-    how: [
-      {
-        title: "Estratégia antes de estética",
-        body: "Posicionamento, tom de voz e personalidade da marca definidos antes da parte visual — para que cada escolha tenha um porquê.",
-      },
-      {
-        title: "Identidade visual aplicável",
-        body: "Logo, paleta, tipografia e sistema visual desenhados já pensando em tela: contraste, escala e uso em produto digital.",
-      },
-      {
-        title: "Brand guidelines vivas",
-        body: "Um guia de marca prático que o seu time usa de verdade — e que se conecta direto ao design system do produto.",
-      },
-    ],
-    stack: ["Figma", "Brand Guidelines", "Design Tokens"],
-    miniCase: {
-      title: "Identidade de startup de tech",
-      body: "Construímos marca e produto em paralelo: o design system nasceu da identidade, garantindo coerência total.",
-      metric: "1 sistema, 0 inconsistência",
-    },
-    faq: [
-      {
-        q: "Fazem só o logo?",
-        a: "Podemos, mas brilhamos quando a marca nasce conectada ao produto digital — é aí que a coerência aparece.",
-      },
-      {
-        q: "Já tenho marca. Aproveitam?",
-        a: "Sim. Partimos da sua identidade e a estendemos para o digital, mantendo o que já funciona.",
-      },
-      {
-        q: "Entregam os arquivos editáveis?",
-        a: "Sempre. Os arquivos-fonte e o guia de marca são seus, sem amarras.",
-      },
-    ],
-    icon: "Sparkles",
   },
   // ───────────────────────────── CRESCEMOS ─────────────────────────────
   {
@@ -451,9 +406,9 @@ export const services: Service[] = [
     ],
     stack: ["Google Search Console", "GA4", "Google Ads", "Meta Ads", "Schema.org"],
     miniCase: {
-      title: "Marketplace de nicho",
-      body: "Corrigimos a base técnica e estruturamos o conteúdo. O tráfego orgânico cresceu de forma consistente em seis meses.",
-      metric: "+120% de tráfego orgânico",
+      title: "Base técnica + conteúdo",
+      body: "Core Web Vitals no verde, dados estruturados e conteúdo por intenção de busca, com campanhas que rastreiam conversão de verdade — visibilidade que vira receita, não achismo.",
+      metric: "Tráfego que converte",
     },
     faq: [
       {
@@ -494,11 +449,11 @@ export const services: Service[] = [
         body: "Horas mensais para melhorias, novas features e otimizações — o produto melhora, não só sobrevive.",
       },
     ],
-    stack: ["GitHub Actions", "Sentry", "Uptime Monitoring", "Dependabot"],
+    stack: ["Atualizações de segurança", "Backups", "Monitoramento de uptime"],
     miniCase: {
-      title: "Contrato de manutenção SaaS",
-      body: "Assumimos a manutenção de uma plataforma órfã, atualizamos a stack e estancamos os incidentes recorrentes.",
-      metric: "incidentes críticos → 0",
+      title: "Engenharia de plantão",
+      body: "Dependências em dia, patches de segurança, backups testados e SLA por severidade — o seu produto seguro e no ar, sem o custo de montar um time interno.",
+      metric: "SLA por severidade",
     },
     faq: [
       {
@@ -519,44 +474,44 @@ export const services: Service[] = [
   {
     slug: "hospedagem",
     frente: "crescemos",
-    title: "Hospedagem & DevOps",
-    short: "Deploy, CI/CD, uptime e backups — sem você pensar nisso.",
+    title: "Hospedagem",
+    short: "Seu site no ar, rápido e sempre disponível.",
     promise:
-      "Infraestrutura que escala sozinha e faz deploy seguro a cada commit — invisível, do jeito que deve ser.",
+      "A gente coloca o seu site no ar e mantém ele funcionando — você não precisa entender nada de servidor.",
     problem:
-      "Deploy manual quebra produção. Sem CI/CD, backup e monitoramento, um erro pequeno vira madrugada de pânico — e ninguém percebe que o site caiu antes do cliente.",
+      "Colocar um site no ar e mantê-lo funcionando assusta quem não é técnico: domínio, certificado de segurança, o site fora do ar sem ninguém perceber. Não precisa ser assim.",
     how: [
       {
-        title: "CI/CD de verdade",
-        body: "Pipeline automatizado: testes, build e deploy a cada commit, com preview de cada alteração antes de ir para produção.",
+        title: "Colocamos no ar pra você",
+        body: "Cuidamos de toda a configuração para publicar o seu site: hospedagem, domínio e certificado de segurança (SSL) prontos, sem dor de cabeça.",
       },
       {
-        title: "Infra que escala",
-        body: "Hospedagem em borda (Vercel, Cloudflare) ou cloud (AWS) dimensionada para o seu tráfego, com escala automática nos picos.",
+        title: "Rápido e estável",
+        body: "Usamos uma hospedagem moderna e veloz, que aguenta picos de acesso e mantém o seu site no ar com boa disponibilidade.",
       },
       {
-        title: "Uptime e backups",
-        body: "Monitoramento com alertas, backups automáticos e testados, e plano de recuperação para quando o improvável acontece.",
+        title: "Backups e tranquilidade",
+        body: "Mantemos cópias de segurança e acompanhamos o site — se algo acontecer, dá para voltar rápido ao normal.",
       },
     ],
-    stack: ["Vercel", "AWS", "Cloudflare", "GitHub Actions", "Docker"],
+    stack: ["Vercel", "Domínio & SSL", "Backups"],
     miniCase: {
-      title: "Migração de infraestrutura",
-      body: "Migramos um cliente de deploy manual em VPS para CI/CD com preview deploys e backups automáticos.",
-      metric: "deploy: 40min → 90s",
+      title: "Site no ar sem complicação",
+      body: "Você cuida do seu negócio; a gente cuida de manter o site publicado, rápido e seguro — domínio e SSL incluídos.",
+      metric: "No ar, sem susto",
     },
     faq: [
       {
-        q: "Onde meu projeto fica hospedado?",
-        a: "Indicamos a melhor opção para o caso (geralmente Vercel para web). A conta e o controle são sempre seus.",
+        q: "Onde meu site fica hospedado?",
+        a: "Em uma hospedagem moderna e rápida (geralmente Vercel). A conta e o controle podem ser seus — sem amarras.",
       },
       {
-        q: "O que é deploy com preview?",
-        a: "Cada alteração ganha um ambiente isolado para revisar antes de ir ao ar — fim do 'subiu quebrado em produção'.",
+        q: "Preciso entender de servidor?",
+        a: "Não. Essa é a ideia: você não precisa saber nada técnico. A gente configura e mantém tudo funcionando.",
       },
       {
-        q: "E se cair?",
-        a: "Monitoramento com alertas, backups testados e plano de recuperação fazem parte do pacote.",
+        q: "E se o site sair do ar?",
+        a: "Acompanhamos a disponibilidade e mantemos backups, para voltar ao normal o mais rápido possível.",
       },
     ],
     icon: "Cloud",

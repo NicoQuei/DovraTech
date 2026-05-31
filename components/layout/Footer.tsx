@@ -90,15 +90,12 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 flex flex-col gap-4 border-t border-line pt-6 text-xs text-fg-faint sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} {site.fullName} · CNPJ {site.cnpj}
+            © {year} {site.fullName} · {site.address}
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <Link href="/privacidade" className="transition-colors hover:text-fg-muted">
               Privacidade & LGPD
             </Link>
-            <span className="font-mono text-fg-faint/80" title="Sim, é Next.js.">
-              {"// feito com Next.js + ☕"}
-            </span>
           </div>
         </div>
       </Container>

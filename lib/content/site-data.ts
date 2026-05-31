@@ -9,57 +9,10 @@ export type Stat = {
 };
 
 export const stats: Stat[] = [
-  { value: 80, suffix: "+", label: "Projetos entregues" },
-  { value: 40, suffix: "+", label: "Clientes atendidos" },
-  { value: 99.9, decimals: 1, suffix: "%", label: "Uptime médio" },
-  { value: 96, label: "Lighthouse médio" },
-];
-
-export type Testimonial = {
-  quote: string;
-  author: string;
-  role: string;
-};
-
-export const testimonials: Testimonial[] = [
-  {
-    quote:
-      "A Dovra entregou um produto rápido e sólido — e o melhor: documentado e nosso. Trocar de fornecedor deixou de ser um medo.",
-    author: "Rafael Tavares",
-    role: "CEO, Fluxo",
-  },
-  {
-    quote:
-      "Design e engenharia no mesmo time mudou tudo. Acabou a briga entre 'o que foi desenhado' e 'o que dá pra fazer'.",
-    author: "Marina Alves",
-    role: "Fundadora, Norte",
-  },
-  {
-    quote:
-      "Performance virou diferencial de marca pra gente. O site é tão rápido que os clientes comentam.",
-    author: "Camila Reis",
-    role: "Head de Marketing, Atlas",
-  },
-  {
-    quote:
-      "Profissionalismo raro. Prazo cumprido, comunicação clara e um padrão de código que o nosso novo time agradeceu.",
-    author: "Diego Nunes",
-    role: "Produto, Órbita",
-  },
-];
-
-/** Client logos rendered as wordmarks in the marquee (placeholders). */
-export const clientLogos: string[] = [
-  "Norte",
-  "Fluxo",
-  "Atlas",
-  "Órbita",
-  "Vértice",
-  "Lumen",
-  "Praxis",
-  "Quanta",
-  "Meridian",
-  "Cortex",
+  { value: 72, suffix: "h", label: "Para uma landing no ar" },
+  { value: 30, suffix: " dias", label: "Projeto completo, no máx." },
+  { value: 100, suffix: "%", label: "Propriedade do código" },
+  { value: 96, label: "Lighthouse alvo" },
 ];
 
 export type Differential = {
@@ -86,9 +39,9 @@ export const differentials: Differential[] = [
     icon: "Gauge",
   },
   {
-    title: "Deploy com CI/CD",
-    body: "Integração e entrega contínuas, com preview a cada alteração e deploy sem susto.",
-    icon: "GitBranch",
+    title: "Hospedagem incluída",
+    body: "Colocamos o seu site no ar e mantemos ele rodando — domínio, SSL e backups, sem você se preocupar.",
+    icon: "Cloud",
   },
   {
     title: "SLA de suporte",
@@ -117,8 +70,8 @@ export const techStack: { group: string; items: string[] }[] = [
     items: ["React Native", "Expo"],
   },
   {
-    group: "Infra & DevOps",
-    items: ["Vercel", "AWS", "Cloudflare", "Docker", "GitHub Actions"],
+    group: "Hospedagem",
+    items: ["Vercel", "Domínio & SSL", "Backups"],
   },
   {
     group: "Design",

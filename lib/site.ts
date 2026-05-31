@@ -8,12 +8,10 @@ export const site = {
   description:
     "Estúdio de engenharia digital. Unimos design e código sob o mesmo teto para construir produtos rápidos, sólidos e com propriedade total do cliente.",
   locale: "pt-BR",
-  // Placeholders — substitua pelos dados reais da Dovra.
   email: "contato@dovratech.com.br",
-  phoneDisplay: "+55 (11) 9 9999-9999",
-  whatsapp: "https://wa.me/5511999999999",
-  cnpj: "00.000.000/0001-00",
-  address: "São Paulo · Brasil · Remoto",
+  phoneDisplay: "+55 (85) 99694-1119",
+  whatsapp: "https://wa.me/5585996941119",
+  address: "Brasil · Remoto",
   responseTime: "Resposta em até 1 dia útil",
 } as const;
 
@@ -28,10 +26,7 @@ export const nav: NavItem[] = [
 ];
 
 export const socials: NavItem[] = [
-  { label: "GitHub", href: "https://github.com" },
-  { label: "LinkedIn", href: "https://linkedin.com" },
-  { label: "Instagram", href: "https://instagram.com" },
-  { label: "Dribbble", href: "https://dribbble.com" },
+  { label: "Instagram", href: "https://instagram.com/dovratech" },
 ];
 
 export const primaryCta = { label: "Iniciar projeto", href: "/contato" } as const;

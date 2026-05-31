@@ -12,7 +12,7 @@ import { frentes, servicesByFrente, type Frente } from "@/lib/content/services";
 export const metadata: Metadata = {
   title: "Serviços",
   description:
-    "Do pixel ao deploy: landing pages, sites, e-commerce, SaaS, apps e sistemas. Design, branding, SEO, manutenção e hospedagem — sob o mesmo teto.",
+    "Do pixel ao deploy: landing pages, sites, e-commerce, SaaS, apps e sistemas. Design, SEO, manutenção e hospedagem — sob o mesmo teto.",
 };
 
 const order: Frente[] = ["construimos", "desenhamos", "crescemos"];

@@ -19,7 +19,7 @@ export const processSteps: ProcessStep[] = [
     icon: "Compass",
     what: "Mergulhamos no seu negócio, objetivos e usuários. Definimos escopo, prioridades e métricas de sucesso antes de qualquer linha de código.",
     deliverable: "Documento de escopo, arquitetura e proposta com prazo e investimento.",
-    duration: "3 a 5 dias",
+    duration: "algumas horas a 1 dia",
   },
   {
     n: "02",
@@ -27,7 +27,7 @@ export const processSteps: ProcessStep[] = [
     icon: "PenTool",
     what: "Desenhamos a arquitetura de informação, os fluxos e a interface em um design system — pensando em conversão e já em código.",
     deliverable: "Protótipo navegável no Figma e design system aprovado.",
-    duration: "1 a 3 semanas",
+    duration: "1 a 4 dias",
   },
   {
     n: "03",
@@ -35,7 +35,7 @@ export const processSteps: ProcessStep[] = [
     icon: "Code2",
     what: "Construímos em ciclos curtos com entregas revisáveis. Código limpo, versionado e com preview a cada alteração.",
     deliverable: "Acesso ao ambiente de staging, atualizado continuamente.",
-    duration: "2 a 12 semanas",
+    duration: "1 dia a 3 semanas",
   },
   {
     n: "04",
@@ -43,15 +43,15 @@ export const processSteps: ProcessStep[] = [
     icon: "TestTube",
     what: "Validamos em dispositivos reais, navegadores, acessibilidade e performance. Nada vai ao ar sem passar pelo crivo.",
     deliverable: "Relatório de QA, Core Web Vitals e checklist de acessibilidade.",
-    duration: "3 a 7 dias",
+    duration: "algumas horas a 2 dias",
   },
   {
     n: "05",
-    title: "Deploy",
+    title: "Publicação",
     icon: "Rocket",
-    what: "Colocamos no ar com CI/CD, domínio, SSL, monitoramento e backups configurados. Deploy seguro, sem susto.",
+    what: "Publicamos o seu site com domínio, certificado de segurança (SSL) e backups configurados. Tudo no ar, testado e funcionando — sem susto.",
     deliverable: "Produto no ar + repositório e documentação entregues a você.",
-    duration: "1 a 2 dias",
+    duration: "no mesmo dia",
   },
   {
     n: "06",

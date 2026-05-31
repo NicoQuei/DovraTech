@@ -88,12 +88,13 @@ export function FeaturesBento() {
             </TiltSpotlight>
           </Reveal>
 
-          {/* E — CI/CD pipeline */}
+          {/* E — Hospedagem */}
           <Reveal className="sm:col-span-1 lg:col-span-2" animation="up">
             <TiltSpotlight className={cn(card, "flex flex-col justify-between")}>
-              <CardHead icon="GitBranch" label="Deploy com CI/CD" />
+              <CardHead icon="Cloud" label="Hospedagem incluída" />
               <p className="mt-4 text-sm text-fg-muted">
-                Integração e entrega contínuas, com preview a cada alteração.
+                Colocamos o seu site no ar e mantemos ele rodando — domínio, SSL
+                e backups.
               </p>
               <Pipeline />
             </TiltSpotlight>
@@ -199,7 +200,7 @@ function Sparkbars() {
   );
 }
 
-/* ── CI/CD pipeline ──────────────────────────────────────────────── */
+/* ── "no ar" status indicator ────────────────────────────────────── */
 function Pipeline() {
   return (
     <div className="mt-6 flex items-center">

@@ -103,6 +103,44 @@ export const projects: Project[] = [
     stack: ["HTML5", "CSS3", "JavaScript", "Vite"],
     liveUrl: "https://cafeteria-mocha-ten.vercel.app/",
   },
+  {
+    slug: "asfalto",
+    name: "Asfalto®",
+    client: "ASFALTO® — streetwear urbano (conceito)",
+    type: "E-commerce",
+    year: "2026",
+    summary:
+      "E-commerce conceitual de streetwear com modelo de drops limitados: estética industrial e cyberpunk, lookbook editorial e catálogo numerado de tênis, roupas e acessórios.",
+    headline: { value: "Drop 01", label: "coleção SS26 em peças numeradas e limitadas" },
+    accent: "#FF1744",
+    accentTo: "#B0001F",
+    image: "/work/asfalto.png",
+    tags: ["E-commerce", "Streetwear", "Front-end", "Motion"],
+    challenge:
+      "Uma marca de streetwear que vive de drops limitados precisa transformar a loja num evento: criar desejo e urgência a cada lançamento, com uma identidade visual radical que se sustenta da primeira tela ao checkout, sem perder fluidez nem desempenho.",
+    solution: [
+      {
+        title: "Modelo de drops numerados",
+        body: "Lançamentos limitados e numerados (Drop 01/SS26), sem reposição, com catálogo organizado por tênis, vestuário e acessórios — cada peça com seu código e narrativa própria.",
+      },
+      {
+        title: "Identidade industrial e cyberpunk",
+        body: "Preto carbono, off-white e o magenta da marca, com tipografia de impacto, lookbook editorial e mood board que constroem a atmosfera futurista da rua.",
+      },
+      {
+        title: "Experiência fluida e animada",
+        body: "Scroll suave com Lenis e animações em Framer Motion e GSAP que dão peso cinematográfico à navegação, mantendo a loja rápida e responsiva em qualquer tela.",
+      },
+    ],
+    results: [
+      { value: "Drop 01", label: "coleção SS26 lançada" },
+      { value: "30", label: "peças numeradas por drop" },
+      { value: "Editorial", label: "lookbook e mood board da marca" },
+      { value: "Fluida", label: "scroll suave e animações cinematográficas" },
+    ],
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    liveUrl: "https://asfalto-one.vercel.app",
+  },
 ];
 
 export const PROJECT_SLUGS = projects.map((p) => p.slug);
