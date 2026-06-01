@@ -141,6 +141,44 @@ export const projects: Project[] = [
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     liveUrl: "https://asfalto-one.vercel.app",
   },
+  {
+    slug: "marinheiros",
+    name: "Marinheiro's",
+    client: "Marinheiro's Burger House — hamburgueria artesanal (conceito)",
+    type: "Landing Page",
+    year: "2026",
+    summary:
+      "Landing page conceitual para uma hamburgueria artesanal de temática náutica: paleta quente e retrô, cardápio em destaque e pedido direto pelo WhatsApp.",
+    headline: { value: "Conceito", label: "landing page de hamburgueria temática" },
+    accent: "#F26B2B",
+    accentTo: "#8B3A1E",
+    image: "/work/marinheiros.png",
+    tags: ["Landing Page", "Responsivo", "Front-end"],
+    challenge:
+      "Uma hamburgueria de bairro precisa virar destino logo na primeira tela: passar a identidade náutica e o capricho do burger artesanal, abrir o apetite e levar o cliente ao pedido pelo WhatsApp sem fricção, impecável no celular, onde a maioria decide onde comer.",
+    solution: [
+      {
+        title: "Identidade náutica e apetite na primeira tela",
+        body: "Hero com o burger em destaque, brasão da casa e a promessa \"o melhor burger do porto\", em paleta quente e tipografia retrô que constroem a personalidade da marca de cara.",
+      },
+      {
+        title: "Do cardápio ao pedido pelo WhatsApp",
+        body: "Seções de cardápio, diferenciais, a casa, ambiente e localização guiam o cliente até um CTA de pedido direto no WhatsApp, encurtando o caminho entre desejo e compra.",
+      },
+      {
+        title: "Responsiva e leve, do mobile ao desktop",
+        body: "Construída com HTML, CSS e JavaScript sobre Vite — rápida e fluida em qualquer tela, sem peso desnecessário.",
+      },
+    ],
+    results: [
+      { value: "Náutica", label: "identidade temática da marca" },
+      { value: "1 toque", label: "pedido direto pelo WhatsApp" },
+      { value: "Mobile-first", label: "responsivo em qualquer tela" },
+      { value: "Leve", label: "HTML/CSS/JS sobre Vite" },
+    ],
+    stack: ["HTML5", "CSS3", "JavaScript", "Vite"],
+    liveUrl: "https://marinheiros-gnw4.vercel.app/",
+  },
 ];
 
 export const PROJECT_SLUGS = projects.map((p) => p.slug);
