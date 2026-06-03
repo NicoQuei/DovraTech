@@ -179,6 +179,44 @@ export const projects: Project[] = [
     stack: ["HTML5", "CSS3", "JavaScript", "Vite"],
     liveUrl: "https://marinheiros-gnw4.vercel.app/",
   },
+  {
+    slug: "sr-moritz",
+    name: "Sr. Moritz",
+    client: "Sr. Moritz — burger artesanal, Fortaleza",
+    type: "Landing Page",
+    year: "2026",
+    summary:
+      "Landing page para uma hamburgueria artesanal de Fortaleza: identidade vintage em verde e dourado, com narrativa do burger artesanal, cardápio e combos em destaque.",
+    headline: { value: "Artesanal", label: "marca com identidade própria, fora dos apps" },
+    accent: "#1F8A4C",
+    accentTo: "#E3B23C",
+    image: "/work/sr-moritz.png",
+    tags: ["Landing Page", "Responsivo", "Front-end"],
+    challenge:
+      "Uma hamburgueria artesanal de Fortaleza precisava de uma presença própria, fora dos apps de entrega: um lugar onde a marca contasse a própria história e transmitisse o capricho do \"artesanal de verdade\" já na primeira tela, impecável no celular.",
+    solution: [
+      {
+        title: "Identidade vintage e apetite na primeira tela",
+        body: "Hero com brasão do Sr. Moritz, mascote e a promessa \"artesanal de verdade\", em verde e dourado com tipografia clássica que fixam a personalidade da marca.",
+      },
+      {
+        title: "Narrativa do produto, cardápio e combos",
+        body: "Seções de cardápio, combos, diferenciais e onde estamos apresentam o burger artesanal e os destaques da casa, construindo desejo antes da decisão.",
+      },
+      {
+        title: "Rápida e responsiva, do mobile ao desktop",
+        body: "Construída em Next.js com Tailwind CSS — leve, fluida e impecável em qualquer tela, onde a maioria dos clientes descobre a marca.",
+      },
+    ],
+    results: [
+      { value: "Artesanal", label: "identidade própria da marca" },
+      { value: "Vintage", label: "estética em verde e dourado" },
+      { value: "Mobile-first", label: "responsivo em qualquer tela" },
+      { value: "Rápida", label: "Next.js com Tailwind CSS" },
+    ],
+    stack: ["Next.js", "TypeScript", "Tailwind CSS"],
+    liveUrl: "https://sr-moritz.vercel.app/",
+  },
 ];
 
 export const PROJECT_SLUGS = projects.map((p) => p.slug);
