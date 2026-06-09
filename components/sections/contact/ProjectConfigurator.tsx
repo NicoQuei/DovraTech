@@ -22,32 +22,12 @@ type TypeOption = {
 };
 
 const TYPES: TypeOption[] = [
-  { id: "landing", label: "Landing page", desc: "Uma página focada em vender ou captar contatos", icon: "MousePointerClick", base: 400, dmin: 2, dmax: 3 },
-  { id: "site", label: "Site institucional", desc: "Site com várias páginas: sobre, serviços, contato", icon: "Globe", base: 1000, dmin: 4, dmax: 8 },
-  { id: "ecommerce", label: "Loja virtual", desc: "Vender produtos online, com carrinho e pagamento", icon: "ShoppingCart", base: 2500, dmin: 10, dmax: 18 },
-  { id: "saas", label: "Plataforma por assinatura", desc: "Sistema com contas de usuário e cobrança recorrente", icon: "Layers", base: 4000, dmin: 16, dmax: 28 },
-  { id: "app", label: "Aplicativo de celular", desc: "App para Android e iPhone", icon: "Smartphone", base: 4000, dmin: 14, dmax: 28 },
-  { id: "sistema", label: "Sistema interno", desc: "Ferramenta sob medida para a sua operação", icon: "Workflow", base: 3000, dmin: 12, dmax: 24 },
-];
-
-type FeatureOption = {
-  id: string;
-  label: string;
-  desc: string;
-  icon: IconName;
-  /** quanto soma ao preço inicial */
-  add: number;
-  /** dias adicionados ao prazo */
-  dadd: [number, number];
-};
-
-const FEATURES: FeatureOption[] = [
-  { id: "design", label: "Design sob medida", desc: "Layout exclusivo, não um modelo pronto", icon: "PenTool", add: 300, dadd: [2, 4] },
-  { id: "pagamentos", label: "Pagamentos online", desc: "Pix, cartão e checkout", icon: "CreditCard", add: 250, dadd: [1, 3] },
-  { id: "auth", label: "Área de login", desc: "Cadastro e contas de usuário", icon: "Lock", add: 250, dadd: [1, 2] },
-  { id: "admin", label: "Painel de gestão", desc: "Uma área para você administrar o conteúdo", icon: "BarChart3", add: 500, dadd: [3, 6] },
-  { id: "integracoes", label: "Integrações", desc: "Conectar com outros sistemas que você já usa", icon: "Plug", add: 400, dadd: [2, 5] },
-  { id: "seo", label: "Aparecer no Google", desc: "Otimização para buscas (SEO)", icon: "TrendingUp", add: 200, dadd: [1, 2] },
+  { id: "landing", label: "Landing page", desc: "Uma página focada em vender ou captar contatos", icon: "MousePointerClick", base: 350, dmin: 2, dmax: 3 },
+  { id: "site", label: "Site institucional", desc: "Site com várias páginas: sobre, serviços, contato", icon: "Globe", base: 800, dmin: 4, dmax: 8 },
+  { id: "ecommerce", label: "Loja virtual", desc: "Vender produtos online, com carrinho e pagamento", icon: "ShoppingCart", base: 1900, dmin: 10, dmax: 18 },
+  { id: "saas", label: "Plataforma por assinatura", desc: "Sistema com contas de usuário e cobrança recorrente", icon: "Layers", base: 3200, dmin: 16, dmax: 28 },
+  { id: "app", label: "Aplicativo de celular", desc: "App para Android e iPhone", icon: "Smartphone", base: 3200, dmin: 14, dmax: 28 },
+  { id: "sistema", label: "Sistema interno", desc: "Ferramenta sob medida para a sua operação", icon: "Workflow", base: 2400, dmin: 12, dmax: 24 },
 ];
 
 /** Teto de prazo: nenhum projeto passa de 1 mês. */
@@ -62,7 +42,7 @@ function formatPrazo(dmin: number, dmax: number): { value: string; unit: string 
   return { value: `${wmin}–${wmax}`, unit: "semanas" };
 }
 
-const STEPS = ["Tipo", "Escopo", "Estimativa", "Contato"];
+const STEPS = ["Tipo", "Estimativa", "Contato"];
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function ProjectConfigurator() {
@@ -70,7 +50,6 @@ export function ProjectConfigurator() {
   const [step, setStep] = useState(0);
   const [dir, setDir] = useState(1);
   const [typeId, setTypeId] = useState<string | null>(null);
-  const [features, setFeatures] = useState<string[]>([]);
   const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [touched, setTouched] = useState(false);
@@ -79,47 +58,28 @@ export function ProjectConfigurator() {
 
   const estimate = useMemo(() => {
     if (!type) return null;
-    let base = type.base;
-    let dmin = type.dmin;
-    let dmax = type.dmax;
-    for (const id of features) {
-      const f = FEATURES.find((x) => x.id === id);
-      if (!f) continue;
-      base += f.add;
-      dmin += f.dadd[0];
-      dmax += f.dadd[1];
-    }
-    // nenhum projeto passa de 1 mês
-    dmin = Math.min(dmin, MAX_DAYS);
-    dmax = Math.min(dmax, MAX_DAYS);
-    return { base, dmin, dmax };
-  }, [type, features]);
+    return {
+      base: type.base,
+      dmin: Math.min(type.dmin, MAX_DAYS),
+      dmax: Math.min(type.dmax, MAX_DAYS),
+    };
+  }, [type]);
 
   const emailValid = EMAIL_RE.test(form.email);
   const contactValid = form.name.trim().length > 1 && emailValid;
 
   const canContinue =
-    step === 0 ? !!type : step === 3 ? contactValid : true;
+    step === 0 ? !!type : step === 2 ? contactValid : true;
 
   const go = (next: number) => {
     setDir(next > step ? 1 : -1);
     setStep(next);
   };
 
-  const toggleFeature = (id: string) =>
-    setFeatures((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
-    );
-
   const summaryText = () => {
-    const feats = features
-      .map((id) => FEATURES.find((f) => f.id === id)?.label)
-      .filter(Boolean)
-      .join(", ");
     return [
       `Olá, Dovra! Montei um projeto no configurador:`,
       `• Tipo: ${type?.label}`,
-      `• Escopo: ${feats || "essencial"}`,
       estimate
         ? `• Estimativa: a partir de R$ ${formatBR(estimate.base)} · ${
             formatPrazo(estimate.dmin, estimate.dmax).value
@@ -151,7 +111,6 @@ export function ProjectConfigurator() {
     setSubmitted(false);
     setStep(0);
     setTypeId(null);
-    setFeatures([]);
     setForm({ name: "", email: "", company: "", message: "" });
     setTouched(false);
   };
@@ -227,28 +186,7 @@ export function ProjectConfigurator() {
                     </Fieldset>
                   )}
 
-                  {step === 1 && (
-                    <Fieldset
-                      legend="O que o projeto precisa incluir?"
-                      hint="Selecione tudo que se aplica (opcional)."
-                    >
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        {FEATURES.map((f) => (
-                          <OptionCard
-                            key={f.id}
-                            icon={f.icon}
-                            label={f.label}
-                            desc={f.desc}
-                            selected={features.includes(f.id)}
-                            multi
-                            onClick={() => toggleFeature(f.id)}
-                          />
-                        ))}
-                      </div>
-                    </Fieldset>
-                  )}
-
-                  {step === 2 && estimate && (
+                  {step === 1 && estimate && (
                     <Fieldset
                       legend="Sua estimativa inicial"
                       hint="Um ponto de partida — o número exato sai depois da conversa, com o escopo na mão."
@@ -278,15 +216,13 @@ export function ProjectConfigurator() {
                         </div>
                       </div>
                       <p className="mt-4 text-sm text-fg-muted">
-                        Inclui {type?.label.toLowerCase()}
-                        {features.length > 0 && " + funcionalidades selecionadas"}.
-                        Performance, documentação e propriedade do código já estão
-                        no pacote — sempre.
+                        Inclui {type?.label.toLowerCase()}. Performance, documentação
+                        e propriedade do código já estão no pacote — sempre.
                       </p>
                     </Fieldset>
                   )}
 
-                  {step === 3 && (
+                  {step === 2 && (
                     <Fieldset
                       legend="Quase lá — como falamos com você?"
                       hint="Sem spam. Respondemos em até 1 dia útil."
@@ -338,7 +274,7 @@ export function ProjectConfigurator() {
                 <ArrowLeft className="h-4 w-4" /> Voltar
               </button>
 
-              {step < 3 ? (
+              {step < 2 ? (
                 <button
                   type="button"
                   onClick={() => canContinue && go(step + 1)}

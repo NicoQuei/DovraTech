@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://dovratech.com
+Sitemap: https://dovratech.com/sitemap.xml

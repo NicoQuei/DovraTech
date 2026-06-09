@@ -1,0 +1,43 @@
+# Dovra Tech — static export on Hostinger (Apache)
+
+# Custom 404 (Next exports 404.html)
+ErrorDocument 404 /404.html
+
+# Next's metadata image routes are exported without a .png extension —
+# force the correct MIME so social crawlers accept the preview images.
+<FilesMatch "^(opengraph-image|twitter-image)$">
+  ForceType image/png
+</FilesMatch>
+
+# Force HTTPS (Hostinger issues the SSL cert; this redirects http→https)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Gzip compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json image/svg+xml application/xml
+</IfModule>
+
+# Caching: hashed Next assets are immutable; HTML stays fresh
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2?|png|jpg|jpeg|webp|avif|svg|mp4)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+  # Light security headers
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>

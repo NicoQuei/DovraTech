@@ -9,7 +9,7 @@ export function ConsoleEasterEgg() {
     const dim = "color:#8B95A7";
     // eslint-disable-next-line no-console
     console.log(
-      "%c❯ Dovra%c — engenharia digital sob medida.\n%cCurtiu o código? Provavelmente vamos curtir o seu desafio.\n→ contato@dovratech.com.br",
+      "%c❯ Dovra%c — engenharia digital sob medida.\n%cCurtiu o código? Provavelmente vamos curtir o seu desafio.\n→ contato@dovratech.com",
       brand,
       dim,
       dim,

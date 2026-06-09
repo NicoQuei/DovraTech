@@ -4,6 +4,8 @@ import { SERVICE_SLUGS } from "@/lib/content/services";
 import { PROJECT_SLUGS } from "@/lib/content/projects";
 import { POST_SLUGS } from "@/lib/content/posts";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.url;
   const now = new Date();
